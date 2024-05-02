@@ -1,5 +1,4 @@
 import datetime
-import random
 import string
 import uuid
 
@@ -15,6 +14,7 @@ from botbot.apps.plugins import models as plugins_models
 from botbot.apps.logs import utils as log_utils
 from botbot.apps.plugins.models import Plugin, ActivePlugin
 from botbot.core.models import TimeStampedModel
+import secrets
 
 def pretty_slug(server):
     parts = server.split('.')
@@ -147,7 +147,7 @@ class Channel(TimeStampedModel):
 
     @classmethod
     def generate_private_slug(cls):
-        return "".join([random.choice(string.ascii_letters) for _ in xrange(8)])
+        return "".join([secrets.choice(string.ascii_letters) for _ in xrange(8)])
 
     def get_absolute_url(self):
         from botbot.apps.bots.utils import reverse_channel

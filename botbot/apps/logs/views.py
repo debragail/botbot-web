@@ -1,7 +1,6 @@
 import datetime
 import json
 import math
-import random
 import re
 
 from django.conf import settings
@@ -22,6 +21,7 @@ from botbot.apps.bots.views import ChannelMixin
 from . import forms
 from botbot.apps.logs.models import Log
 from botbot.apps.kudos.models import KudosTotal
+import secrets
 
 
 
@@ -577,9 +577,9 @@ class ChannelKudos(ChannelMixin, KudosMixin, TemplateView):
         ranks = self.channel.kudos_set.ranks(debug=nick)
         top_tier = ranks[:100]
         if len(top_tier) > 20:
-            scoreboard = [r[0] for r in random.sample(top_tier, 20)]
+            scoreboard = [r[0] for r in secrets.SystemRandom().sample(top_tier, 20)]
         elif len(top_tier) > 4:
-            scoreboard = random.shuffle([r[0] for r in ranks])
+            scoreboard = secrets.SystemRandom().shuffle([r[0] for r in ranks])
         else:
             scoreboard = None
         kwargs.update({
