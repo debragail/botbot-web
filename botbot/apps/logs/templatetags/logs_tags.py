@@ -40,7 +40,7 @@ def is_embeddable(url):
     :return: Type of content, bool if possible.
     """
     # Check if path ends with a image file type
-    if any([url.path.endswith(ending) for ending in image_file_types]):
+    if any(url.path.endswith(ending) for ending in image_file_types):
         return IMAGE, True
 
     elif url.hostname in ['www.youtube.com'] and \

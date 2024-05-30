@@ -425,7 +425,7 @@ class DayLogViewer(PaginatorPageLinksMixin, LogDateMixin, LogViewer, ListView):
         return "line:{0}:permalink".format(line.pk)
 
     def set_view_date(self):
-        if all([field in self.kwargs for field in ['year', 'month', 'day']]):
+        if all(field in self.kwargs for field in ['year', 'month', 'day']):
             year = int(self.kwargs['year'])
             month = int(self.kwargs['month'])
             day = int(self.kwargs['day'])
